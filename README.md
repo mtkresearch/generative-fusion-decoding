@@ -1,1 +1,3 @@
-# generative-fusion-decoding
+# Generative Fusion Decoding
+
+Under review.
