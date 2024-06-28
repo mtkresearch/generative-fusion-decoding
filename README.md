@@ -178,11 +178,11 @@ The table below shows the comparison of each method on multiple datasets:
 
 | Dataset |  GFD  | GFD Ablation* | Whisper(5beams) |
 | :---:   | :---: | :---: | :---: | 
-| NTUML2021-long| 6.05 | 6.09 | 9.56 |
-| FormosaSpeech-long | 20.37 |  22.35 | 23.78 |
-| Fleurs-HK | 5.91  |  7.06 | 6.87 |
-| Librispeech-Noise (S/R = 10) | 5.07 | 5.33 | 5.16 |
-| Librispeech-Noise (S/R = 5) | 7.09 | 7.37 | 7.28 |
+| NTUML2021-long| **6.05** | 6.09 | 9.56 |
+| FormosaSpeech-long | **20.37** |  22.35 | 23.78 |
+| Fleurs-HK | **5.91**  |  7.06 | 6.87 |
+| Librispeech-Noise (S/R = 10) | **5.07** | 5.33 | 5.16 |
+| Librispeech-Noise (S/R = 5) | **7.09** | 7.37 | 7.28 |
 
 *In this setting, we set `fusing_r = 0`, which corresponds to running whisper with our custom beam search algorithm. Both GFD Ablation and Whisper are baselines of GFD.
 
