@@ -44,7 +44,7 @@ To run the script, the following three arguments are required:
 
 **Example Usage**
 ```
-python scripts/run_single_file.py --config_file_path gfd-asr-zhtw --audio_file_path demo_examples/zh_news.wav --result_output_path result/output.txt
+python benchmarks/run_single_file.py --config_file_path gfd-asr-zhtw --audio_file_path demo_examples/zh_news.wav --result_output_path result/output.txt
 ```
 
 ### On Benchmark Dataset
