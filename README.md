@@ -35,6 +35,9 @@ We introduce "Generative Fusion Decoding" (GFD), a novel shallow fusion framewor
    ```
 
 ## Run GFD
+### GPU Memory Requirements
+We run GFD on 1*A6000 machine
+ASR - Whisper Large ~3GB, LLM - Breeze/Mistral ~14GB
 
 ### On Single File
 To run the script, the following three arguments are required: 
