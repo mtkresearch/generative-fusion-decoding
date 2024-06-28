@@ -1,0 +1,2 @@
+asr_prompt: '以下是繁體中文轉錄文檔，講者的講解存在code-switching，有些詞彙的語言是英文'
+llm_prompt: '以下是繁體中文轉錄文檔，講者的講解存在code-switching，有些詞彙的語言是英文：'

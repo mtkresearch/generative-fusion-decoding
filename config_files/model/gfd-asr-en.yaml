@@ -1,0 +1,26 @@
+asr_model_path: '/proj/mtklmadm/models/whisper-large-v2'
+llm_model_path: '/proj/mtklmadm/models/Mistral-7B-v0.1'
+lang: 'en'
+asr_device: 'cuda:0'
+llm_device: 'cuda:0'
+
+seg_with_overlap: True
+use_cache: 'dynamic'
+fuse_strategy: 'simple'
+fusing_r: 0.2
+asr_attn_implementation: 'sdpa'
+llm_attn_implementation: NULL
+llm_temp: 1.7
+transcription_cutoff: 4000
+
+repetition_penalty: 2.0
+repetition_penalty_last: 50
+repetition_penalty_window: 50
+repetition_penalty_threshold: 1.0
+beam_terminated_strategy: 'when_all_end'
+beam_select_strategy: 'best'
+beam_max_decode_len: 448
+beam_max_len_diff: 20
+beam_max_len: -1
+beam_min_len: 9999
+logprob_min: -100000

@@ -1,0 +1,3 @@
+asr_model_path: '/proj/mtklmadm/models/whisper-large-v2'
+asr_device: 'cuda:0'
+lang: 'en'
