@@ -17,4 +17,8 @@ def main():
     result = model.get_transcription(args.audio_file_path)
     print(f'Result: {result}')
 
-    
+    with open(args.result_output_path, 'w') as f:
+        json.dump(result, f, ensure_ascii=False)
+
+if __name__== '__main__':
+    main()    
