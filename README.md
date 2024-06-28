@@ -88,7 +88,7 @@ python benchmarks/run_benchmark.py --dataset_name ml-lecture-2021-long --model_n
 ```
 **Using Multiple GPUs**
 
-If you have multiple GPUs, you can either change the device configuration in the config file or set the `CUDA_VISIBLE_DEVICES` environment variable before running the command.
+If you have multiple GPUs, you can change the device configuration in the config file.
 
 ## Configuration
 
