@@ -72,7 +72,7 @@ To run the benchmark dataset, the following four arguments are required:
    + `whisper-en`: The configuration for the English dataset.
 
 - `--output_dir`: The argument specifies the path to the directory where the model output will be stored. The outputs of the model will be stored in two subfolders:
-    + `temp_resuilts`: Stores the result of each sample to a JSON file.
+    + `temp_results`: Stores the result of each sample to a JSON file.
     + `ds_result`: Stores the whole dataset along with the model predictions.
 
 **Example Usage**
