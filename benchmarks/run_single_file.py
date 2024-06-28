@@ -14,3 +14,7 @@ def main():
     args = parse_args()
     config = process_config(args.config_file_path, args)
     model = Breezper(config)
+    result = model.get_transcription(args.audio_file_path)
+    print(f'Result: {result}')
+
+    
