@@ -1,5 +1,5 @@
-asr_model_path: '/proj/mtklmadm/models/whisper-large-v2'
-llm_model_path: '/nobackup/mtklmadm_t2/mtk53570/Breeze-650G-32k-step1500-hf'
+asr_model_path: 'openai/whisper-large-v2'
+llm_model_path: 'MediaTek-Research/Breeze-7B-32k-Base-v1_0'
 lang: 'zh'
 asr_device: 'cuda:0'
 llm_device: 'cuda:0'
