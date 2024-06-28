@@ -306,23 +306,8 @@ class Breezper:
         return transcription
 
     def _update_asr_llm_mean_and_std(self, beams_list):
-        if self.config.fuse_strategy == 'normalized' or self.config.fuse_strategy == 'normalized_2':
-            asr_scores = np.array([b.asr_score for b in beams_list])
-            llm_scores = np.array([b.llm_score for b in beams_list])
-
-            self.asr_mean = self._moving_average(self.asr_mean, np.mean(asr_scores))
-            asr_std = self._moving_average(self.asr_std, np.std(asr_scores - np.mean(asr_scores)))
-            if np.isnan(asr_std):
-                asr_std = self.min_std
-            asr_std = np.clip(asr_std, self.min_std, np.inf)
-            self.asr_std = asr_std
-
-            self.llm_mean = self._moving_average(self.llm_mean, np.mean(llm_scores))
-            llm_std = self._moving_average(self.llm_std, np.std(llm_scores -np.mean(llm_scores)))
-            if np.isnan(llm_std):
-                llm_std = self.min_std
-            llm_std = np.clip(llm_std, self.min_std, np.inf)
-            self.llm_std = llm_std
+        # DEPRECATED
+        pass
 
     def _calcualte_asr_llm_score(self, asr_normalized_len, asr_logprob, llm_normalized_len, llm_logprob):
         if not (asr_logprob > self.config.logprob_min):
