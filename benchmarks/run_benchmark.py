@@ -124,17 +124,11 @@ def main():
         ds = load_dataset('google/fleurs', 'yue_hant_hk', split='test') # Use Internet Download
         # ds = load_from_disk('../../../data/speech/fleurs/yue_hant_hk/test', keep_in_memory = True)
         transcription_column_name = 'transcription'
-    elif args.dataset_name == 'noisy-librispeech-5':
+    elif args.dataset_name.startswith('noisy-librispeech'):
+        signal_to_noise_ratio = args.dataset_name.split('-')[-1]
         prompt_config = process_config('config_files/prompt/noisy-librispeech-prompt.yaml')
         combined_config = combine_config(prompt_config, setting_config)
-        # ds = load_dataset(from somewhere) # Use Internet Download # DBG: to add
-        ds = load_from_disk('../../../data/speech/noisy-librispeech/5', keep_in_memory = True)
-        transcription_column_name = 'text'
-    elif args.dataset_name == 'noisy-librispeech-10':
-        prompt_config = process_config('config_files/prompt/noisy-librispeech-prompt.yaml')
-        combined_config = combine_config(prompt_config, setting_config)
-        # ds = load_dataset(from somewhere) # Use Internet Download # DBG: to add
-        ds = load_from_disk('../../../data/speech/noisy-librispeech/10', keep_in_memory = True)
+        ds = load_dataset("distil-whisper/librispeech_asr-noise", "test-pub-noise")[signal_to_noise_ratio] # Use Internet Download # DBG: to add
         transcription_column_name = 'text'
     elif args.dataset_name == 'atco2':
         prompt_config = process_config('config_files/prompt/atco2-asr-prompt.yaml')
