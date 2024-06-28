@@ -55,7 +55,7 @@ To run the benchmark dataset, the following four arguments are required:
     + fleurs-hk: The Google Fleurs dataset using the split of yue_hant_hk.
     + noisy-librispeech-10: Librispeech dataset with noises added to the audio (S/R = 10).
     + noisy-librispeech-5: Librispeech dataset with noises added to the audio (S/R = 5).
-    + acto-2: Air Traffic Control Voice Communication dataset.  
+    + atco2: Air Traffic Control Voice Communication dataset.  
 - `--model_name`: This argument specifies which model to use. There are two options:
     + `gfd`: This is our method.
     + `whisper`: This is the baseline model.
