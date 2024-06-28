@@ -162,7 +162,7 @@ The general configuration files `gfd-asr-zhtw.yaml` and `gfd-asr-en.yaml` contai
 
 ## Evaluate the Result
 
-After running the model on the benchmark dataset, you can evaluate the result by calculating the Mixed Error Rates (MER) using the provided `benchmarks/calcualate_mer.py` script. The script requireds the following arguments:
+After running the model on the benchmark dataset, you can evaluate the result by calculating the Mixed Error Rates (MER) using the provided `benchmarks/calculate_mer.py` script. The script requireds the following arguments:
 
 + `--dataset_name`: The short version name of the benchmark dataset that you want to evalute.
 + `--output_dir`: The output directory that stores the output from the model.
@@ -170,7 +170,7 @@ After running the model on the benchmark dataset, you can evaluate the result by
 **Example Usage**
 
 ```
-python benchmarks/calcualate_mer.py --dataset_name ml-lecture-2021-long --output_dir result/
+python benchmarks/calculate_mer.py --dataset_name ml-lecture-2021-long --output_dir result/
 ```
 
 ## Evaluation Results on Benchmark Datasets
