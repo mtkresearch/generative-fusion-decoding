@@ -1,5 +1,5 @@
-asr_model_path: '/proj/mtklmadm/models/whisper-large-v2'
-llm_model_path: '/proj/mtklmadm/models/Mistral-7B-v0.1'
+asr_model_path: 'openai/whisper-large-v2'
+llm_model_path: 'mistralai/Mistral-7B-v0.1'
 lang: 'en'
 asr_device: 'cuda:0'
 llm_device: 'cuda:0'
