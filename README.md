@@ -1,11 +1,11 @@
 # Generative Fusion Decoding
 
-Chan-Jan Hsu*, Yi-Chang Chen*, Feng-Ting Liao, Pei-Chen Ho, Yu-Hsiang Wang, Po-Chun Hsu, Da-shan Shiu
+Python code for the paper "[[Let’s Fuse Step by Step: A Generative Fusion Decoding Algorithm with LLMs for Multi-modal Text Recognition]](https://arxiv.org/abs/2405.14259)" by Chan-Jan Hsu*, Yi-Chang Chen*, Feng-Ting Liao, Pei-Chen Ho, Yu-Hsiang Wang, Po-Chun Hsu, Da-shan Shiu
 
  *Equal contribution
 
 
-[[Paper]](https://arxiv.org/abs/2405.14259)
+
 
 ## Approach
 
