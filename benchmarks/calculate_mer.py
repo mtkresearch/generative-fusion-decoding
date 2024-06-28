@@ -277,7 +277,7 @@ elif args.dataset_name == 'formosa-long':
 elif args.dataset_name == 'fleurs-hk':
     transcription_column_name = 'transcription'
     goldcleaner_function = goldcleaner_formosa
-elif args.dataset_name in ['noisy-librispeech-5', 'noisy-librispeech-10']:
+elif args.dataset_name.startswith('noisy-librispeech'):
     transcription_column_name = 'text'
     goldcleaner_function = goldcleaner_librispeech
 elif args.dataset_name == 'acto2':
@@ -315,8 +315,5 @@ if not use_dataset: # use json
 df["preds"] = [predscleaner(x) for x in df["prediction"]]
 df["gold"] = [goldcleaner_function(x) for x in df[transcription_column_name]]
 
-wer = [jiwer.wer(x, y) for x,y in zip(df['gold'], df['preds'])]
-print([len(x.split()) for x in df["preds"]])
-print(wer)
 wer = jiwer.wer(list(df["gold"]),list(df["preds"]))
 print(wer)
