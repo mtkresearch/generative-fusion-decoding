@@ -128,19 +128,12 @@ def main():
         signal_to_noise_ratio = args.dataset_name.split('-')[-1]
         prompt_config = process_config('config_files/prompt/noisy-librispeech-prompt.yaml')
         combined_config = combine_config(prompt_config, setting_config)
-        ds = load_dataset("distil-whisper/librispeech_asr-noise", "test-pub-noise")[signal_to_noise_ratio] # Use Internet Download # DBG: to add
+        ds = load_dataset("distil-whisper/librispeech_asr-noise", "test-pub-noise")[signal_to_noise_ratio] # Use Internet Download
         transcription_column_name = 'text'
     elif args.dataset_name == 'atco2':
         prompt_config = process_config('config_files/prompt/atco2-asr-prompt.yaml')
         combined_config = combine_config(prompt_config, setting_config)
-        # ds = load_dataset(from somewhere) # Use Internet Download # DBG: to add
-        ds = load_from_disk('../../../data/speech/atco2-asr/train/train', keep_in_memory = True)
-        transcription_column_name = 'text'
-    elif args.dataset_name == 'atco2-asr-only':
-        prompt_config = process_config('config_files/prompt/atco2-asr-only-prompt.yaml')
-        combined_config = combine_config(prompt_config, setting_config)
-        # ds = load_dataset(from somewhere) # Use Internet Download # DBG: to add
-        ds = load_from_disk('../../../data/speech/atco2-asr/train/train', keep_in_memory = True)
+        ds = load_dataset("jlvdoorn/atco2-asr", split = "train") # Use Internet Download
         transcription_column_name = 'text'
 
     if args.model_name == 'gfd':
