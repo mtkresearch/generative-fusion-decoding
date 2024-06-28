@@ -56,9 +56,9 @@ To run the benchmark dataset, the following four arguments are required:
     + noisy-librispeech-10: Librispeech dataset with noises added to the audio (S/R = 10).
     + noisy-librispeech-5: Librispeech dataset with noises added to the audio (S/R = 5).
     + atco2: Air Traffic Control Voice Communication dataset.  
-- `--model_name`: This argument specifies which model to use. There are two options:
-    + `gfd`: This is our method.
-    + `whisper`: This is the baseline model.
+- `--model_name`: This argument specifies which type of model to use. There are two options:
+    + `gfd`: The generative fusion decoding method.
+    + `whisper`: The huggingface whisper generation method.
 - `--setting`: The argument specifies the configuration setting for the model. The available settings depend on the `model_name`:
 
    For **gfd**:
@@ -92,19 +92,19 @@ If you have multiple GPUs, you can either change the device configuration in the
 
 ## Configuration
 
-Inside `config_files/model` folder, there are configuration for GFD and Whisper model, including Traditional Chinese and English for both models.
+There are configurations for GFD and Whisper model under `config_files/model`, including Traditional Chinese and English for both models.
 - GFD:
    - Traditional Chinese: `gfd-asr-zhtw.yaml`
    - English: `gfd-asr-en.yaml`
 - Whisper:
-   - Traditional Chinese: `gfd-asr-zhtw.yaml`
-   - English: `gfd-asr-en.yaml`
+   - Traditional Chinese: `whisper-zhtw.yaml`
+   - English: `whisper-en.yaml`
 
 In `config_files/prompt`, it also includes task-specific configurations of Automatic Speech Recognition (ASR) and Language Model (LLM) prompts for `gfd`. The naming rule for prompt configuration file is `{short version dataset name}_prompt.yaml`.
 
 The general configuration files `gfd-asr-zhtw.yaml` and `gfd-asr-en.yaml` contain various configuration options. Below are the meanings and choices for each argument, divided into three parts based on the likelihood of needing to reset them.
 
-### Arguments that most likely should be reset
+### Core Arguments
 
 - **`asr_model_path`**: Path to the Automatic Speech Recognition (ASR) model for speech recognition.
 
@@ -122,9 +122,9 @@ The general configuration files `gfd-asr-zhtw.yaml` and `gfd-asr-en.yaml` contai
 
 - **`seg_with_overlap`**: Default is `False`. When set to `True`, the audio will be segmented with a short interval of overlap. If set to `false`, the audio will be segmented without any overlap.
 
-- **`fusing_strategy`**: Default is `simple`. The fusing score of ASR and LLM will be the weighted sum of ASR score and LLM score depending on `fusing_r`. 
+- **`fusing_strategy`**: Default is `simple`. The fusing score of ASR and LLM will be the weighted sum of ASR score and LLM score. score = `fusing_r` * `llm_score` + `1-fusing_r` + `asr_score`.
 
-- **`use_cache`**: Default is `dynamic`. When set to `dynamic`, the model will run with key-value (kv) cache enabled, which speeds up the processing, especially for long-from audio. If set to `None`, the kv cache will be disabled. If your GPU memory is limited, consider setting it to `None`.
+- **`use_cache`**: Default is `dynamic`. When set to `dynamic`, the model will run with key-value (kv) cache enabled, which speeds up the processing, especially for long-from audio. If set to `None`, the kv cache will be disabled. If you are facing memory issues, consider setting it to `None` to release memory.
 
 - **`fusing_r`**: Fusing ratio used in the fusing strategy to combine ASR and LLM outputs.
 
