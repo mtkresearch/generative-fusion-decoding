@@ -42,7 +42,13 @@ Memory Breakdown: ASR - Whisper Large ~3GB, LLM - Breeze/Mistral ~14GB
 
 ### On Single File
 To run the script, the following three arguments are required: 
-- `--config_file_path`: The path to configuration file that contains model settings.
+- `--model_name`: This argument specifies which type of model to use. There are two options:
+    + `gfd`: The generative fusion decoding method.
+- `--setting`: The argument specifies the configuration setting for the model. The available settings depend on the `model_name`:
+    + `asr-zhtw`: The complete version of our method's configuration for testing on a Traditional Chinese sample.
+    + `asr-zhtw-lmoff`: Uses our custom beam search method on the ASR model, neglecting the output from the LLM (fusing_r = 0) for a Traditional Chinese sample.
+    + `asr-en`: The complete version of our method's configuration for testing on an English sample.
+    + `asr-en-lmoff`: Uses our custom beam search method on the ASR model, neglecting the output from the LLM (fusing_r = 0) for an English dataset sample.
 - `--audio_file_path`: The path to the audio file that you want to process.
 - `--result_output_path`: The path where the output result will be saved.
 
@@ -67,9 +73,9 @@ To run the benchmark dataset, the following four arguments are required:
 
    For **gfd**:
    + `asr-zhtw`: The complete version of our method's configuration for testing on the Traditional Chinese dataset.
-   + `asr-zhtw-lmoff`: Uses our designed beam search method on the ASR model, neglecting the output from the LLM (fusing_r = 0) for Traditional Chinese dataset.
+   + `asr-zhtw-lmoff`: Uses our custom beam search method on the ASR model, neglecting the output from the LLM (fusing_r = 0) for Traditional Chinese dataset.
    + `asr-en`: he complete version of our method's configuration for testing on the English dataset.
-   + `asr-en-lmoff`: Uses our designed beam search method on the ASR model, neglecting the output from the LLM (fusing_r = 0) for the English dataset.
+   + `asr-en-lmoff`: Uses our custom beam search method on the ASR model, neglecting the output from the LLM (fusing_r = 0) for the English dataset.
 
    For **whisper**:
    + `whisper-zhtw`: The configuration for the Traditional Chinese dataset.
