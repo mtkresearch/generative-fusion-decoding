@@ -17,7 +17,7 @@ We introduce "Generative Fusion Decoding" (GFD), a novel shallow fusion framewor
 
 1. **Clone the repository:**
    ```
-   git clone <the url of the project>
+   git clone https://github.com/mtkresearch/generative-fusion-decoding.git
    cd generative-fusion-decoding
    ```
 2. **Create a python virtual environment:**
