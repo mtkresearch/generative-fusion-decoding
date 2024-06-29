@@ -21,8 +21,14 @@ def main():
             }
     }
     args = parse_args()
-    config = process_config(args.config_file_path, args)
-    model = Breezper(config)
+    setting_config = setting_configs[args.model_name][args.setting]
+    if "en" in args.setting:
+        prompt_config = process_config('config_files/prompt/noisy-librispeech-prompt.yaml')
+    elif "zhtw" in args.setting:
+        prompt_config = process_config('config_files/prompt/formosa-long-prompt.yaml')
+    combined_config = combine_config(prompt_config, setting_config)
+    
+    model = Breezper(combined_config)
     result = model.get_transcription(args.audio_file_path)
     print(f'Result: {result}')
 
