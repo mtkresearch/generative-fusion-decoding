@@ -174,16 +174,12 @@ class Breezper:
             asr_eos_id=self.asr_tokenizer.eos_token_id)
         
         asr_prefix_decoding_ids, llm_prefix_decoding_ids = self._get_prefix_decoding_ids(asr_prompt, llm_prompt)
-        print(encoder_outputs,asr_prefix_decoding_ids,self.surpress_begin_token_func)
         next_asr_logprobs, asr_inds = self._asr_forward(
             encoder_outputs,
             asr_prefix_decoding_ids,
             k=1,
             supress_func=self.surpress_begin_token_func
         )
-        print("start",self.asr_tokenizer.convert_ids_to_bytes(asr_inds))
-        print(next_asr_logprobs)
-        print(asr_prompt, llm_prompt)
         for ind, next_asr_logprob in zip(asr_inds, next_asr_logprobs):
             next_id = ind.item()
             next_asr_logprob = next_asr_logprob.item()
