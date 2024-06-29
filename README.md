@@ -196,9 +196,11 @@ The table below shows the comparison of each method on multiple datasets:
 
 *In this setting, we set `fusing_r = 0`, which corresponds to running whisper with our custom beam search algorithm. Both **GFD Ablation** and **Whisper** are baselines of GFD.
 
-| Dataset |  GFD  | GFD Ablation with ASR Prompt | GFD Ablation without ASR Prompt |  Whisper |
-| :---:   | :---: | :---: | :---: | :---: | 
-| ATCO-2 | - | 31.48 / 42.68** | - | - | - |
+| Dataset |  GFD  | GFD  |GFD Ablation with ASR Prompt | GFD Ablation without ASR Prompt | 
+|ASR prompting | yes | no | yes | no | 
+|LLM prompting |  yes | yes | NA | NA | 
+| :---:   | :---:   | :---: | :---: | :---: | :---: | 
+| ATCO-2 | - | - | 31.48 / 42.68** | - | - | - |
 
 
 ** The former score is computed using the results processed with Whisper EnglishTextNormalizer. The latter score is derived from transcription results that are only converted to lowercase without further normalization They correspond to the Norm and Raw column in the paper respectively.
