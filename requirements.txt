@@ -52,8 +52,6 @@ prompt-toolkit==3.0.43
 psutil==5.9.8
 ptyprocess==0.7.0
 pure-eval==0.2.2
-pyarrow==16.0.0
-pyarrow-hotfix==0.6
 pycparser==2.22
 Pygments==2.18.0
 python-dateutil==2.9.0.post0
