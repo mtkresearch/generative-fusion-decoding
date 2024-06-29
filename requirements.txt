@@ -10,7 +10,7 @@ cffi==1.16.0
 charset-normalizer==3.3.2
 click==8.1.7
 cmake==3.29.2
-datasets==2.19.1
+datasets==2.20.1
 decorator==5.1.1
 dill==0.3.8
 einops==0.7.0
