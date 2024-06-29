@@ -13,6 +13,13 @@ def parse_args():
     return parser.parse_args()
 
 def main():
+    setting_configs = {
+        'gfd': {'asr-en': process_config('config_files/model/gfd-asr-en.yaml'),
+            'asr-zhtw': process_config('config_files/model/gfd-asr-zhtw.yaml'),
+            'asr-en-lmoff': process_config('config_files/model/gfd-asr-en.yaml', args=argparse.Namespace(**{'fusing_r': 0.0})),
+            'asr-zhtw-lmoff': process_config('config_files/model/gfd-asr-zhtw.yaml', args=argparse.Namespace(**{'fusing_r': 0.0}))
+            }
+    }
     args = parse_args()
     config = process_config(args.config_file_path, args)
     model = Breezper(config)
