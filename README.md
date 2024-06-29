@@ -194,7 +194,7 @@ The table below shows the comparison of each method on multiple datasets:
 | Librispeech-Noise (S/R = 10) | **5.07** | 5.33 | 5.16 |
 | Librispeech-Noise (S/R = 5) | **7.09** | 7.37 | 7.28 |
 
-*In this setting, we set `fusing_r = 0`, which corresponds to running whisper with our custom beam search algorithm. Both GFD Ablation and Whisper are baselines of GFD.
+*In this setting, we set `fusing_r = 0`, which corresponds to running whisper with our custom beam search algorithm. Both **GFD Ablation** and **Whisper** are baselines of GFD.
 
 | Dataset |  GFD  | GFD Ablation with ASR Prompt | GFD Ablation without ASR Prompt |  Whisper |
 | :---:   | :---: | :---: | :---: | :---: | 
