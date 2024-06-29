@@ -196,7 +196,7 @@ The table below shows the comparison of each method on multiple datasets:
 
 *In this setting, we set `fusing_r = 0`, which corresponds to running whisper with our custom beam search algorithm. Both **GFD Ablation** and **Whisper** are baselines of GFD.
 
-| Dataset |  GFD  | GFD  |GFD Ablation with ASR Prompt | GFD Ablation without ASR Prompt | 
+| Dataset |  GFD  | GFD  |GFD Ablation | GFD Ablation | 
 | :---:   | :---:   | :---: | :---: | :---: | 
 |**ASR prompting** | **yes** | **no** | **yes** | **no** | 
 |**LLM prompting** |  **yes** | **yes** | **NA** | **NA** | 
