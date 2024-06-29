@@ -105,6 +105,10 @@ class Breezper:
             y = fpath_or_audio
             sr = sr
 
+        if DEBUG:
+            print('asr prompt:', asr_prompt)
+            print('llm prompt:', llm_prompt)
+
         if len(y) <= sr * 30:
             transcription = self._get_transcription(y, sr, num_beams, asr_prompt=asr_prompt, llm_prompt=llm_prompt, use_cache=self.config.use_cache)
         else:
