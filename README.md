@@ -40,6 +40,8 @@ We run GFD on 1*A6000 machine
 
 Memory Breakdown: ASR - Whisper Large ~3GB, LLM - Breeze/Mistral ~14GB
 
+🤗You can try it out hassle-free with Kaggle T4 GPUs [here](https://www.kaggle.com/code/a24998667/generative-fusion-decoding-example)!
+
 ### On Single File
 To run the script, the following three arguments are required: 
 - `--model_name`: This argument specifies which type of model to use. There are two options:
