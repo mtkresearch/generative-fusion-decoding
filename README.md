@@ -209,7 +209,7 @@ The table below shows the comparison of each method on multiple datasets:
 
 ## Warning
 
-**Warning**: This project uses a [custom tokenizer](https://github.com/mtkresearch/generative-fusion-decoding/blob/main/gfd/tokenizer.py) and has only been tested with the Mistral and Breeze models. Using other models may result in errors or unexpected behavior. Please ensure compatibility before using it with other models.
+**Warning**: This project uses tokenizers with [custom tokenizer functions](https://github.com/mtkresearch/generative-fusion-decoding/blob/main/gfd/tokenizer.py) mostly to deal with byte string tokenizations, and has only been tested with the Mistral and Breeze models. Using other models may result in errors or unexpected behavior. Please ensure compatibility before using it with other models.
 
 ## Acknowledgements
 If you like our work, please site:
