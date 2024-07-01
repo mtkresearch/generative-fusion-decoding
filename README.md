@@ -160,7 +160,7 @@ The general configuration files `gfd-asr-zhtw.yaml` and `gfd-asr-en.yaml` contai
 
 - **`beam_terminated_strategy`**: Beam search termination strategy. The default is `when_all_ended`, which terminates beam search when all beams reaches the end.
 
-- **`beam_select_strategy`**: Beam selection strtegy, options including `'best'` which selects the beam with highest score, and `'longest'` which selects the beam with longest transcription result
+- **`beam_select_strategy`**: Beam selection strategy, options including `'best'` which selects the beam with highest score, and `'longest'` which selects the beam with longest transcription result
 
 - **`beam_max_decode_len`**: Maximum decode length for beam search, which specifies the maximum length of the decoded sequence during beam search.
 
