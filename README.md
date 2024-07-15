@@ -134,7 +134,7 @@ The general configuration files `gfd-asr-zhtw.yaml` and `gfd-asr-en.yaml` contai
 
 - **`seg_with_overlap`**: Default is `False`. When set to `True`, the audio will be segmented with a short interval of overlap. If set to `false`, the audio will be segmented without any overlap.
 
-- **`fusing_strategy`**: Default is `simple`. The fusing score of ASR and LLM will be the weighted sum of ASR score and LLM score. score = `fusing_r` * `llm_score` + `1-fusing_r` + `asr_score`.
+- **`fusing_strategy`**: Default is `simple`. The fusing score of ASR and LLM will be the weighted sum of ASR score and LLM score. score = `fusing_r` * `llm_score` + `1-fusing_r` * `asr_score`.
 
 - **`use_cache`**: Default is `dynamic`. When set to `dynamic`, the model will run with key-value (kv) cache enabled, which speeds up the processing, especially for long-from audio. If set to `None`, the kv cache will be disabled. If you are facing memory issues, consider setting it to `None` to release memory.
 
