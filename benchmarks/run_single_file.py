@@ -30,7 +30,7 @@ def main():
     combined_config = combine_config(prompt_config, setting_config)
     
     model = Breezper(combined_config)
-    result = model.get_transcription(args.audio_file_path)
+    result = model.get_transcription(args.audio_file_path, combined_config.asr_prompt, combined_config.llm_prompt)
     print(f'Result: {result}')
 
     with open(args.result_output_path, 'w') as f:
