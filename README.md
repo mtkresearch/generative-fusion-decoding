@@ -192,9 +192,14 @@ The table below shows the comparison of each method on multiple datasets:
 | :---:   | :---: | :---: | :---: | 
 | NTUML2021-long| **6.05** | 6.09 | 9.56 |
 | FormosaSpeech-long | **20.37** |  22.35 | 23.78 |
+| FormosaSpeech-long + rare words | 21.04 |  - | - |
 | Fleurs-HK | **5.91**  |  7.06 | 6.87 |
 | Librispeech-Noise (S/R = 10) | **5.07** | 5.33 | 5.16 |
 | Librispeech-Noise (S/R = 5) | **7.09** | 7.37 | 7.28 |
+| Librispeech-Clean | 4.90 | 4.98 | 4.45 |
+| Librispeech-Clean + rare words| 4.93 | - | - |
+| Librispeech-Other | 8.14 | 8.17 | 7.51 |
+| Librispeech-Other + rare words| 8.04 | - | - |
 
 *In this setting, we set `fusing_r = 0`, which corresponds to running whisper with our custom beam search algorithm. Both **GFD Ablation** and **Whisper** are baselines of GFD.
 
@@ -203,6 +208,7 @@ The table below shows the comparison of each method on multiple datasets:
 |**ASR prompting** | **yes** | **no** | **yes** | **no** | 
 |**LLM prompting** |  **yes** | **yes** | **NA** | **NA** | 
 | ATCO-2 | - | - | 31.48 / 42.68** | - | - |
+| Medical | 11.52 | - | 31.48 / 42.68** | - | - |
 
 
 ** The former score is computed using the results processed with Whisper EnglishTextNormalizer. The latter score is derived from transcription results that are only converted to lowercase without further normalization They correspond to the Norm and Raw column in the paper respectively.
