@@ -11,7 +11,7 @@ from gfd.beam import BeamsControler
 from gfd.model import BreezeByte
 from gfd.tokenizer import LlamaByteTokenizer, WhisperByteTokenizer
 
-DEBUG = 1
+DEBUG = 2
 
 class SuppressTokenWarper():
     def __init__(self, surpress_tokens, min_value):
@@ -25,6 +25,7 @@ class SuppressTokenWarper():
 class Breezper:
     def __init__(self, config):
         self.config = config
+        print(self.config.asr_model_path)
         self.asr = WhisperForConditionalGeneration.from_pretrained(
             self.config.asr_model_path, torch_dtype=torch.float16, device_map=self.config.asr_device, 
             attn_implementation=self.config.asr_attn_implementation)
@@ -135,10 +136,16 @@ class Breezper:
     def _get_prefix_decoding_ids(self, asr_prompt, llm_prompt):
         # asr
         asr_prompt = asr_prompt if asr_prompt else self.asr_default_prompt
-        asr_prefix = (
-            self.asr_prefix_prompt_template.format(prompt=asr_prompt)
-            + self.asr_prefix_template
-        )
+        if asr_prompt != None:
+            asr_prefix = (
+                self.asr_prefix_prompt_template.format(prompt=asr_prompt)
+                + self.asr_prefix_template
+            )
+        else:
+            asr_prefix = (
+                self.asr_prefix_template
+            )
+
         asr_prefix_decoding_ids = self.asr_tokenizer(
             asr_prefix,
             add_special_tokens=False
@@ -155,15 +162,19 @@ class Breezper:
 
     def _asr_forward(self, encoder_outputs, decoder_input_ids, k, supress_func=None):
         with torch.no_grad():
+            #print(self.asr)
+            print(self.asr_tokenizer.decode(decoder_input_ids), decoder_input_ids)
             logits = self.asr(
                 encoder_outputs=encoder_outputs,
                 decoder_input_ids=torch.tensor(decoder_input_ids, device=self.device), 
                 return_dict=True
             ).logits
+            print("logits",logits)
             if supress_func is not None:
                 logits = supress_func(logits)
             logprobs = torch.log(torch.softmax(logits, dim=-1))
             next_logprobs, inds = torch.topk(logprobs[0, -1, :], k, dim=-1)
+            print(next_logprobs, self.asr_tokenizer.convert_ids_to_tokens(inds))
 
         return next_logprobs, inds
 
@@ -220,6 +231,8 @@ class Breezper:
                         k=num_beams,
                         supress_func=self.surpress_token_func
                     )
+                    print(next_asr_logprobs, self.asr_tokenizer.convert_ids_to_tokens(asr_inds))
+                    input()
 
                     asr_inds = [x.item() for x in asr_inds]
                     next_asr_logprobs = [x.item() for x in next_asr_logprobs]

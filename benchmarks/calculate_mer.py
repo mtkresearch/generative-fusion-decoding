@@ -92,7 +92,7 @@ def demathify(x):
 
 
 def clean_repeating_end(text, repeat_threshold):
-    x = list(text)[::-1]
+    x = list(text.split())[::-1]
     for k in range(1,len(x)//repeat_threshold):
         repeat = x[0:k] * repeat_threshold
         motiv = x[0:k]
@@ -161,10 +161,19 @@ def goldcleaner_formosa(x):
 
 
 def goldcleaner_librispeech(x):
-    x = re.sub(r'[^\w\s]','',x)
+    #x = re.sub(r'[^\w\s]','',x)
     x = x.strip()
     x = x.lower()
     x = normalizer(x)
+
+    return x
+
+def predscleaner_librispeech(x):
+    x = x.strip()
+    x = re.sub('<[^>]*>','', x)
+    x = clean_repeating_end(x, 3)
+    x = normalizer(x)
+    x = x.strip()
 
     return x
 
@@ -272,7 +281,7 @@ if args.dataset_name in 'ml-lecture-2021-long':
     transcription_column_name = 'transcription'
     goldcleaner_function = goldcleaner_ml
 elif args.dataset_name == 'formosa-long':
-    transcription_column_name = 'text'
+    transcription_column_name = 'transcription'
     goldcleaner_function = goldcleaner_formosa
 elif args.dataset_name == 'fleurs-hk':
     transcription_column_name = 'transcription'
@@ -280,6 +289,7 @@ elif args.dataset_name == 'fleurs-hk':
 elif args.dataset_name.startswith('noisy-librispeech'):
     transcription_column_name = 'text'
     goldcleaner_function = goldcleaner_librispeech
+    predscleaner = predscleaner_librispeech
 elif args.dataset_name == 'acto2':
     transcription_column_name = 'text'
     predscleaner = predscleaner_acto2
@@ -290,12 +300,13 @@ use_dataset = True
 try:
     ds = load_from_disk(os.path.join(args.output_dir, 'ds_result'))
 except:
-    print('Load from disk failed.')
+    print(args.output_dir, 'Load from disk failed.')
     use_dataset = False
 
 if use_dataset:
     try:
         sub_ds = ds.select_columns([transcription_column_name, 'prediction'])
+        sub_ds = sub_ds.rename_column(transcription_column_name, 'transcription')
         df = sub_ds.to_pandas()
     except:
         print('Extracting dataset failed. Column name error.')
@@ -312,8 +323,13 @@ if not use_dataset: # use json
     df = pd.DataFrame.from_dict(all_samples)
     print('Number of samples loaded from json: ', len(df))
 
+#print(df)
+#df = df.head(1165)
 df["preds"] = [predscleaner(x) for x in df["prediction"]]
-df["gold"] = [goldcleaner_function(x) for x in df[transcription_column_name]]
+df["gold"] = [goldcleaner_function(x) for x in df['transcription']]
+df["wer"] = [jiwer.wer(gold, pred) for gold, pred in zip(df["gold"], df["preds"])]
 
+# Save to CSV
+df.to_csv("wer_results.csv", index=False)
 wer = jiwer.wer(list(df["gold"]),list(df["preds"]))
-print(wer)
+print(args.output_dir, wer)

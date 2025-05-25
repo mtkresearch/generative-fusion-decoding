@@ -76,6 +76,7 @@ def test_benchmark(ds, model_name, config, transcription_column_name, output_dir
     temp_result_dir = f'{output_dir}/temp_results'
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+    if not os.path.exists(temp_result_dir):
         os.makedirs(temp_result_dir)
     evaluator = Evaluator(model_name, config, transcription_column_name, temp_result_dir)
     ds = ds.map(evaluator.evaluate, with_indices=True)
@@ -128,7 +129,7 @@ def main():
         signal_to_noise_ratio = args.dataset_name.split('-')[-1]
         prompt_config = process_config('config_files/prompt/noisy-librispeech-prompt.yaml')
         combined_config = combine_config(prompt_config, setting_config)
-        ds = load_dataset("distil-whisper/librispeech_asr-noise", "test-pub-noise")[signal_to_noise_ratio] # Use Internet Download
+        ds = load_dataset("distil-whisper/librispeech_asr-noise", "validation-pub-noise")[signal_to_noise_ratio] # Use Internet Download
         transcription_column_name = 'text'
     elif args.dataset_name == 'atco2':
         prompt_config = process_config('config_files/prompt/atco2-asr-prompt.yaml')
@@ -136,10 +137,13 @@ def main():
         ds = load_dataset("jlvdoorn/atco2-asr", split = "train") # Use Internet Download
         transcription_column_name = 'text'
 
+    output_dir = os.path.join(args.output_dir, args.dataset_name, args.setting)
+    print(output_dir)
+
     if args.model_name == 'gfd':
-        test_benchmark(ds, args.model_name, combined_config, transcription_column_name, args.output_dir)
+        test_benchmark(ds, args.model_name, combined_config, transcription_column_name, output_dir)
     elif args.model_name == 'whisper':
-        test_benchmark(ds, args.model_name, setting_config, transcription_column_name, args.output_dir)
+        test_benchmark(ds, args.model_name, setting_config, transcription_column_name, output_dir)
 
 if __name__== '__main__':
     main()
