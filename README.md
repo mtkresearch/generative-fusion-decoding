@@ -59,6 +59,11 @@ To run the script, the following three arguments are required:
 python benchmarks/run_single_file.py --model_name gfd --setting asr-zhtw --audio_file_path demo_examples/zh_news.wav --result_output_path output.txt
 ```
 
+For OCR inference you can use:
+```
+python benchmarks/run_ocr_single_file.py --image_file_path path/to/image.png --result_output_path output.txt
+```
+
 ### On Benchmark Dataset
 To run the benchmark dataset, the following four arguments are required:
 - `--dataset_name`: Each dataset we tested has a short version name for easy reference. When you run  `benchmarks/run_benchmark.py`, the script will automatically download the specified dataset from Hugging Face. Below is a list of short version names of datasets used.
