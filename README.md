@@ -185,28 +185,6 @@ After running the model on the benchmark dataset, you can evaluate the result by
 python benchmarks/calculate_mer.py --dataset_name ml-lecture-2021-long --output_dir result/
 ```
 
-## Evaluation Results on Benchmark Datasets
-The table below shows the comparison of each method on multiple datasets: 
-
-| Dataset |  GFD  | GFD Ablation* | Whisper(5beams) |
-| :---:   | :---: | :---: | :---: | 
-| NTUML2021-long| **6.05** | 6.09 | 9.56 |
-| FormosaSpeech-long | **20.37** |  22.35 | 23.78 |
-| Fleurs-HK | **5.91**  |  7.06 | 6.87 |
-| Librispeech-Noise (S/R = 10) | **5.07** | 5.33 | 5.16 |
-| Librispeech-Noise (S/R = 5) | **7.09** | 7.37 | 7.28 |
-
-*In this setting, we set `fusing_r = 0`, which corresponds to running whisper with our custom beam search algorithm. Both **GFD Ablation** and **Whisper** are baselines of GFD.
-
-| Dataset |  GFD  | GFD  |GFD Ablation | GFD Ablation | 
-| :---:   | :---:   | :---: | :---: | :---: | 
-|**ASR prompting** | **yes** | **no** | **yes** | **no** | 
-|**LLM prompting** |  **yes** | **yes** | **NA** | **NA** | 
-| ATCO-2 | - | - | 31.48 / 42.68** | - | - |
-
-
-** The former score is computed using the results processed with Whisper EnglishTextNormalizer. The latter score is derived from transcription results that are only converted to lowercase without further normalization They correspond to the Norm and Raw column in the paper respectively.
-
 ## Warning
 
 **Warning**: This project uses tokenizers with [custom tokenizer functions](https://github.com/mtkresearch/generative-fusion-decoding/blob/main/gfd/tokenizer.py) mostly to deal with byte string tokenizations, and has only been tested with the Mistral and Breeze models. Using other models may result in errors or unexpected behavior. Please ensure compatibility before using it with other models.
