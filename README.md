@@ -46,6 +46,7 @@ Memory Breakdown: ASR - Whisper Large ~3GB, LLM - Breeze/Mistral ~14GB
 To run the script, the following three arguments are required: 
 - `--model_name`: This argument specifies which type of model to use. There are two options:
     + `gfd`: The generative fusion decoding method.
+    + `whisper`: The huggingface whisper generation method.
 - `--setting`: The argument specifies the configuration setting for the model. The available settings depend on the `model_name`:
     + `asr-zhtw`: The complete version of our method's configuration for testing on a Traditional Chinese sample.
     + `asr-zhtw-lmoff`: Uses our custom beam search method on the ASR model, neglecting the output from the LLM (fusing_r = 0) for a Traditional Chinese sample.
@@ -76,7 +77,7 @@ To run the benchmark dataset, the following four arguments are required:
    For **gfd**:
    + `asr-zhtw`: The complete version of our method's configuration for testing on the Traditional Chinese dataset.
    + `asr-zhtw-lmoff`: Uses our custom beam search method on the ASR model, neglecting the output from the LLM (fusing_r = 0) for Traditional Chinese dataset.
-   + `asr-en`: he complete version of our method's configuration for testing on the English dataset.
+   + `asr-en`: The complete version of our method's configuration for testing on the English dataset.
    + `asr-en-lmoff`: Uses our custom beam search method on the ASR model, neglecting the output from the LLM (fusing_r = 0) for the English dataset.
 
    For **whisper**:
